@@ -1,3 +1,3 @@
 var config = {
-  domain: "line.twcanhelp.me",
+  domain: "line.example.me",
 };
