@@ -1,33 +1,28 @@
-const PROXY_LISTS = [
-  {
-    domain: "gf.line.naver.jp",
-    path: "/enc",
-  },
-  {
-    domain: "stickershop.line-scdn.net",
-    path: "/products",
-  },
-  {
-    domain: "obs.line-apps.com",
-    path: "/talk",
-  },
-  {
-    domain: "line-web-client.pages.dev",
-    path: "/",
-  },
-];
-
 addEventListener("fetch", (event) => {
-  event.respondWith(handleRequest(event.request));
+  event.respondWith(
+    handleRequest(event.request).catch(
+      (err) => new Response(err.stack, { status: 500 })
+    )
+  );
 });
 
+/**
+ * Many more examples available at:
+ *   https://developers.cloudflare.com/workers/examples
+ * @param {Request} request
+ * @returns {Promise<Response>}
+ */
 async function handleRequest(request) {
+  const { pathname } = new URL(request.url);
   const url = new URL(request.url);
-  for (let i = 0; i < PROXY_LISTS.length; i++) {
-    if (url.pathname.startsWith(PROXY_LISTS[i]["path"])) {
-      url.hostname = PROXY_LISTS[i]["domain"];
-      const data = await fetch(url, request);
-      return data;
-    }
+  if (pathname.startsWith("/enc")) {
+    url.hostname = "gf.line.naver.jp";
+  } else if (pathname.startsWith("/products")) {
+    url.hostname = "stickershop.line-scdn.net";
+  } else if (pathname.startsWith("/talk")) {
+    url.hostname = "obs.line-apps.com";
+  } else {
+    url.hostname = "line-web-client.pages.dev";
   }
+  return fetch(url, request);
 }
