@@ -21,6 +21,8 @@ async function handleRequest(request) {
     url.hostname = "stickershop.line-scdn.net";
   } else if (pathname.startsWith("/talk")) {
     url.hostname = "obs.line-apps.com";
+  } else if (pathname.startsWith("/0h")) {
+    url.hostname = "profile.line-scdn.net";
   } else {
     url.hostname = "line-web-client.pages.dev";
   }
