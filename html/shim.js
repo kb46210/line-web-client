@@ -201,3 +201,21 @@ chrome = browser = {
     create: function (createProperties, callback) {},
   },
 };
+
+var realXMLHttpRequest = XMLHttpRequest;
+XMLHttpRequest = function fakeXMLHttpRequest(arg) {
+  var xhr;
+  if (typeof arg !== "undefined") {
+    // Some implementations allow for a non-standard argument, support them
+    xhr = new realXMLHttpRequest(arg);
+  } else {
+    // Normal case
+    xhr = new realXMLHttpRequest();
+  }
+  xhr.timeout = 8000;
+  xhr.addEventListener("timeout", function (e) {
+    // ...
+  });
+  return xhr;
+};
+XMLHttpRequest.prototype = realXMLHttpRequest.prototype;
