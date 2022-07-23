@@ -1,0 +1,1 @@
+var apidomain = window.location.hostname; 
