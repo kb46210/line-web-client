@@ -1,0 +1,22 @@
+{
+  "name": "line-web-client",
+  "version": "1.0.0",
+  "description": "Self-hosting LINE Web Client",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chouhsiang/line-web-client.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chouhsiang/line-web-client/issues"
+  },
+  "homepage": "https://github.com/chouhsiang/line-web-client#readme",
+  "devDependencies": {
+    "ipfs-deploy": "^11.2.2"
+  }
+}
