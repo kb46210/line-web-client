@@ -212,7 +212,7 @@ XMLHttpRequest = function fakeXMLHttpRequest(arg) {
     // Normal case
     xhr = new realXMLHttpRequest();
   }
-  xhr.timeout = 8000;
+  xhr.timeout = 10000;
   xhr.addEventListener("timeout", function (e) {
     // ...
   });
